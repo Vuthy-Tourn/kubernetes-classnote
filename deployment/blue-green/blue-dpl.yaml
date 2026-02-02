@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-blue-app
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+      replicas: blue
+  template:
+    metadata:
+      labels:
+        app: demo-app
+        replicas: blue
+    spec:
+      containers:
+      - name: demo-app
+        image: 69966/earthdx:78
+        ports:
+        - containerPort: 80
