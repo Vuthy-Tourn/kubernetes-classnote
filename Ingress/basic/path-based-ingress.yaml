@@ -17,7 +17,7 @@ spec:
   rules:
   - host: reactjs-k8s-demo.vuthytourn.shop
     http:
-      paths:
+      paths: 
       - pathType: Prefix
         path: "/nginx"
         backend:
