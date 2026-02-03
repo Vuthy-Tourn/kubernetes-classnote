@@ -1,6 +1,6 @@
 # Kubernetes Dashboard & ArgoCD Access Guide
 
-This guide explains how to access the **Kubernetes Dashboard** and **ArgoCD** in your cluster.
+This guide explains how to access the **Kubernetes Dashboard** in your cluster.
 
 ---
 
