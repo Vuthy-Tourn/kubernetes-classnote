@@ -1,14 +1,41 @@
+# Kubernetes Dashboard & ArgoCD Access Guide
+
+This guide explains how to access the **Kubernetes Dashboard** and **ArgoCD** in your cluster.
+
+---
+
+## Kubernetes Dashboard
+
+### 1. Check Services in the `kube-system` namespace
+
+```
 kubectl get svc -n kube-system
+```
 
-# make sure to change from NodePort to ClusterIP 
+### 2. Change Dashboard Service Type (if needed)
+
+> Make sure to change from `NodePort` to `ClusterIP`:
+
+```
 kubectl edit svc kubernetes-dashboard -n kube-system
+```
 
-# getting service of kubernetes-dashboard
+### 3. Verify Kubernetes Dashboard Service
+
+```
 kubectl get svc -A | grep "kubernetes-dashboard"
+```
 
-# getting namespace 
-kubectl get ns -A 
+### 4. Verify Namespace
 
-# Copy token and login in Kubernetes Dashboard
-kubectl -n kubernetes-dashboard create token admin-user --duration=24h 
+```
+kubectl get ns -A
+```
 
+### 5. Generate Access Token
+
+```
+kubectl -n kubernetes-dashboard create token admin-user --duration=24h
+```
+
+> Copy the generated token and use it to login to the Kubernetes Dashboard.
