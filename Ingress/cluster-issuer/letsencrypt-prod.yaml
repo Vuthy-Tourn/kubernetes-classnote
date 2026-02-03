@@ -6,7 +6,7 @@ spec:
   acme:
     # Production server (trusted certs, rate-limited)
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: lyvanna544@gmail.com 
+    email: vuthytuon168@gmail.com
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
     solvers:
