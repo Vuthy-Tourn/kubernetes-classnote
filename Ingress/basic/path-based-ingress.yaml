@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: path-based-ingress
+  # labels:
+  #   app.kubernetes.io/name: myingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingressClassName: "nginx"
+spec:
+  ingressClassName: nginx 
+  tls:
+  - hosts: 
+    - reactjs-k8s-demo.vuthytourn.shop
+    secretName: nginx-k8s-secretname
+  rules:
+  - host: reactjs-k8s-demo.vuthytourn.shop
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/nginx"
+        backend:
+          service:
+            name: nginx-svc
+            port: 
+              number: 80
+              
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: reactjs-svc
+            port: 
+              number: 80
