@@ -35,7 +35,7 @@ kubectl get ns -A
 ### 5. Generate Access Token
 
 ```
-kubectl -n kubernetes-dashboard create token admin-user --duration=24h
+kubectl -n kube-system create token admin-user --duration=24h
 ```
 
 > Copy the generated token and use it to login to the Kubernetes Dashboard.
