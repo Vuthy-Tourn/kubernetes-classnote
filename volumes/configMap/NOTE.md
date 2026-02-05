@@ -39,7 +39,7 @@ envFrom:
 
 📌 Use when the app is picky about extra newlines
 
-### `\>`
+### `>`
 
 **Folded block (lines become spaces)**
 
@@ -50,7 +50,7 @@ envFrom:
 
 📌 Use for long text that should read as one line
 
-### `\>-`
+### `>-`
 
 **Folded block, trim last newline**
 
