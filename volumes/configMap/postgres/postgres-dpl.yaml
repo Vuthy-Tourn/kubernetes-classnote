@@ -18,6 +18,15 @@ spec:
         image: postgres:latest
         ports:
         - containerPort: 5432
+
+      # The usage of when we not use the exact needed of the secret
+        env: 
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                  key: WHATEVER_USER
+                  name: postgres-demo-cm
+
         envFrom:
           - configMapRef:
               name: postgres-demo-cm

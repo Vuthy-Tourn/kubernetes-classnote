@@ -5,3 +5,4 @@ metadata:
 data:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: "vuthy123"
+  WHATEVER_USER: "whatever_user"
