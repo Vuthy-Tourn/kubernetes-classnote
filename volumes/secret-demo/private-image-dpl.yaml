@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: private-image-nginx
+spec:
+  selector:
+    matchLabels:
+      app: private-image-nginx
+  template:
+    metadata:
+      labels:
+        app: private-image-nginx
+    spec:
+      imagePullSecrets: 
+        - name: nexus-cred 
+      containers:
+      - name: private-image-nginx
+        image: nexus-cr-demo.vuthytourn.shop/nginx:alpine
+        ports:
+        - containerPort: 80 

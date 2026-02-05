@@ -40,3 +40,23 @@ kubectl create secret generic \
     --from-env-file=.env
 
 ```
+
+## Working with nexus private docker images 
+- `dockerconfigjson` , for getting the private image from the registry 
+```bash 
+# dockerhub
+kubectl create secret docker-registry regcred \
+  --docker-server=https://index.docker.io/v1/ \
+  --docker-username=myuser \
+  --docker-password=mypassword \
+  --docker-email=my@email.com
+
+# nexus
+kubectl create secret docker-registry nexus-cred \
+  --docker-server=https://nexus-cr-demo.vuthytourn.shop \
+  --docker-username=admin \
+  --docker-password=<your-password-here> \
+  --docker-email=my@email.com
+
+```
+- if you use dockerhub, gitlab registry, ghcr, rather than using actual password, we should use the token specifically for the registry instead.
