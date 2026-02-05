@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-fileupload-dpl
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spring-fileupload-app
+  template:
+    metadata:
+      labels:
+        app: spring-fileupload-app
+    spec:
+      nodeSelector: 
+        kubernetes.io/hostname: node4 
+      containers:
+      - name: spring-fileupload-app
+        image: 69966/springgradleimg:1.1.1
+        ports:
+        - containerPort: 8080
+        volumeMounts: 
+          - name: spring-vol 
+            mountPath: /app/src/main/resources/images
+      volumes: 
+          - name: spring-vol 
+            hostPath: 
+              path: /var/spring-images
