@@ -11,6 +11,8 @@ spec:
       labels:
         app: postgres-app
     spec:
+      nodeSelector: 
+        kubernetes.io/hostname: node4 
       containers:
       - name: postgres-app
         image: postgres:latest
