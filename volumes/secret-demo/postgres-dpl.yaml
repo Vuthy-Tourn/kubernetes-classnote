@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-demo-dpl
+spec:
+  selector:
+    matchLabels:
+      app: postgres-demo-app
+  template:
+    metadata:
+      labels:
+        app: postgres-demo-app
+    spec:
+      containers:
+      - name: postgres-demo-app
+        image: postgres:latest 
+        ports:
+        - containerPort:  5432
+        env:  
+          - name: POSTGRES_USER
+            valueFrom: 
+              secretKeyRef:
+                name: postgres-secret-demo
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret-demo
+                key: POSTGRES_PASSWORD
