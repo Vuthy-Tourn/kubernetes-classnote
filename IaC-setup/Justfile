@@ -1,0 +1,9 @@
+setup-IaC: 
+    echo "Setup Infrastructure...... "
+    ansible-playbook -i inventory.ini \
+        playbooks/main-iac.yaml
+        
+destroy: 
+    echo "Destroy the whole infrastructure..." 
+    ansible-playbook -i inventory.ini \
+        playbooks/main-iac.yaml -e "mode=destroy"
