@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-nodeselector-dpl
+spec:
+  replicas: 4 
+  selector:
+    matchLabels:
+      app: nginx-nodeselector-app
+  template:
+    metadata:
+      labels:
+        app: nginx-nodeselector-app
+    spec:
+      affinity:
+        nodeAffinity:
+        # hard rule: must be placed on a matching node, or it won’t run.
+
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: disktype
+                operator: NotIn
+                values:
+                - hdd
+
+          # soft rule: preferred if it exists, but not really required
+          # preferredDuringSchedulingIgnoredDuringExecution:
+          #   - weight: 100
+          #     preference:
+          #       matchExpressions:
+          #         - key: disktype
+          #           operator: NotIn
+          #           values:
+          #             - hdd
+      containers:
+      - name: nginx-nodeselector-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
