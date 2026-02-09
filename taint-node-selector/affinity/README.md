@@ -43,3 +43,11 @@
         
 
 👉 Think: **“Place near these Pods”**
+
+## Key operators
+| Operator     | Meaning                  |
+| ------------ | ------------------------ |
+| In           | value must match         |
+| NotIn        | value must NOT match     |
+| Exists       | label key exists         |
+| DoesNotExist | label key does not exist |
