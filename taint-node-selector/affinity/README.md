@@ -51,3 +51,13 @@
 | NotIn        | value must NOT match     |
 | Exists       | label key exists         |
 | DoesNotExist | label key does not exist |
+
+## Topology key
+
+- The topologyKey defines what “close” or “far” means.
+
+| topologyKey                     | Meaning     |
+| ------------------------------- | ----------- |
+| `kubernetes.io/hostname`        | Same node   |
+| `topology.kubernetes.io/zone`   | Same zone   |
+| `topology.kubernetes.io/region` | Same region |
