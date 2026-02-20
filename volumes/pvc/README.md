@@ -9,12 +9,11 @@
 PVC must be bound to PV 
 
 Demo 2 ways 
-1. Manual approach 
+1. Static Provisioning ( Manual approach )
 - Create PV, create PVC all by yourself 
-2. Using external NFS provisioner 
+2. Dynamic Provisioning ( Using external NFS provisioner )
 - Only need to create the PVC , PV will be automatically created 
 - Provider better handling , ...
-3. Dynamic Provisioner
 ```bash
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm repo update # same as sudo apt  update 
