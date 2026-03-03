@@ -14,6 +14,9 @@ Demo 2 ways
 2. Dynamic Provisioning ( Using external NFS provisioner )
 - Only need to create the PVC , PV will be automatically created 
 - Provider better handling , ...
+
+## Installation
+- with nfs 
 ```bash
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm repo update # same as sudo apt  update 
@@ -21,4 +24,14 @@ helm repo update # same as sudo apt  update
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
     --set nfs.server=10.148.0.2 \
     --set nfs.path=/srv/nfs_shared/spring-demo-pv
+```
+
+- with longhorn
+```bash
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.10.2/deploy/longhorn.yaml
+
+# watch running pod
+kubectl get pods \
+--namespace longhorn-system \
+--watch
 ```
