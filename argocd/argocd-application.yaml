@@ -9,6 +9,9 @@ spec:
    repoURL: https://github.com/Vuthy-Tourn/argocd-gitops.git
    targetRevision: HEAD
    path: ./springboot-chart
+   helm:                            
+      valueFiles:
+        - values-prod.yaml  
 
  # which cluster you planning to deploy !   
  destination:
