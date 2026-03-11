@@ -1,0 +1,25 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: prometheus-ingress
+  namespace: default 
+  annotations: 
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec: 
+  ingressClassName: "nginx"
+  tls: 
+    - hosts: 
+      - grafana.vuthytourn.shop
+      secretName: kube-stack-new-tls
+  rules:
+    - host: grafana.vuthytourn.shop
+      http:
+        paths: 
+          - pathType: Prefix 
+            path: "/"
+            backend: 
+              service: 
+                name: monitor-stack-release-grafana 
+                port: 
+                  number: 80
