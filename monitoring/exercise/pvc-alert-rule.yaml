@@ -1,0 +1,38 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pvc-gib-alerts-my-app
+  namespace: monitoring  
+  labels: 
+    release: monitor-stack-release
+spec:
+  groups:
+  - name: pvc.rules
+    rules:
+    # / 1073741824 → converts bytes → GiB (1 GiB = 1024³ bytes)
+    # > 7 → triggers when usage exceeds 7 GiB 
+    - alert: PVCUsageWarning
+      expr: |
+        kubelet_volume_stats_used_bytes{
+          namespace="default",
+          persistentvolumeclaim="postgres-pvc"
+        } / 1073741824 > 7
+      for: 5s
+      labels:
+        severity: warning
+      annotations:
+        summary: "PVC usage is above 7 GiB (70%) for Deployment my-app"
+        description: "PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is using more than 7 GiB."
+
+    - alert: PVCUsageCritical
+      expr: |
+        kubelet_volume_stats_used_bytes{
+          namespace="default",
+          persistentvolumeclaim="postgres-pvc"
+        } / 1073741824 > 9
+      for: 5s
+      labels:
+        severity: critical
+      annotations:
+        summary: "PVC usage is above 9 GiB (90%) for Deployment my-app"
+        description: "PVC {{ $labels.persistentvolumeclaim }} in namespace {{ $labels.namespace }} is using more than 9 GiB."

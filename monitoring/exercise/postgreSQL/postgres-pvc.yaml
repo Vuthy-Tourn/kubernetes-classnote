@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi      
+  storageClassName: longhorn
+
+
+
+
+
+
+
+
+
+
+
+
+# CREATE TABLE fill_test (
+#   id SERIAL PRIMARY KEY,
+#   data TEXT
+# );
+
+# -- Insert ~7.5 GiB of data (run multiple times if needed)
+# INSERT INTO fill_test (data)
+# SELECT repeat('x', 1000)          -- 1KB per row
+# FROM generate_series(1, 7500000); -- ~7.5 million rows
+
+# -- Check current DB size
+# SELECT pg_size_pretty(pg_database_size('postgres'));
